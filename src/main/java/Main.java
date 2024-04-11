@@ -11,6 +11,13 @@ public class Main {
         List<String> initialGenes = Arrays.asList("A", "a");
         List<String> combinations = calculateCombinations(initialGenes, generations);
         System.out.println("Genetic combinations for " + generations + " generations: " + combinations);
+
+        int n = 5;
+        System.out.println("Sum of natural numbers up to " + n + ": " + calculateSum(n));
+
+        int start = 1;
+        int end = 10;
+        System.out.println("Numbers from " + start + " to " + end + ": " + listNumbers(start, end));
     }
 
     public static int countGenes(String dna) {
@@ -33,6 +40,24 @@ public class Main {
                 newGenes.add(gene + "a");
             }
             return calculateCombinations(newGenes, generations - 1);
+        }
+    }
+
+    public static int calculateSum(int n) {
+        if (n <= 0) {
+            return 0;
+        } else {
+            return n + calculateSum(n - 1);
+        }
+    }
+
+    public static List<Integer> listNumbers(int start, int end) {
+        if (start > end) {
+            return new ArrayList<>();
+        } else {
+            List<Integer> numbers = listNumbers(start, end - 1);
+            numbers.add(end);
+            return numbers;
         }
     }
 }
