@@ -10,7 +10,17 @@ public class Main {
     public static void main(String[] args) {
         JFrame frame = new JFrame("Menu");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(300, 200);
+        frame.setSize(500, 200);
+
+        JLabel label = new JLabel("UAX", SwingConstants.CENTER);
+        JPanel panelUAX = new JPanel();
+        panelUAX.setPreferredSize(new Dimension(200, 200));
+        panelUAX.setBackground(Color.BLUE);
+        panelUAX.add(label);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setBackground(Color.GRAY);
 
         JButton button1 = new JButton("Conteo de Genes");
         JButton button2 = new JButton("Cálculo de Combinaciones Genéticas");
@@ -38,10 +48,13 @@ public class Main {
             }
         });
 
-        frame.getContentPane().setLayout(new FlowLayout());
-        frame.getContentPane().add(button1);
-        frame.getContentPane().add(button2);
-        frame.getContentPane().add(button3);
+        panel.add(button1);
+        panel.add(button2);
+        panel.add(button3);
+
+        frame.getContentPane().setLayout(new BorderLayout());
+        frame.getContentPane().add(panelUAX, BorderLayout.WEST);
+        frame.getContentPane().add(panel, BorderLayout.EAST);
 
         frame.setVisible(true);
     }
