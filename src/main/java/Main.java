@@ -4,7 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
@@ -24,7 +26,8 @@ public class Main {
 
         JButton button1 = new JButton("Conteo de Genes");
         JButton button2 = new JButton("Cálculo de Combinaciones Genéticas");
-        JButton button3 = new JButton("Salir");
+        JButton button4 = new JButton("Salir");
+        JButton button3 = new JButton("Listado de Números de Genes"); // Nuevo botón
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER;
@@ -33,6 +36,7 @@ public class Main {
         buttonPanel.add(button1, gbc);
         buttonPanel.add(button2, gbc);
         buttonPanel.add(button3, gbc);
+        buttonPanel.add(button4, gbc); // Agregar el nuevo botón al panel
 
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -53,6 +57,14 @@ public class Main {
         button3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
+            }
+        });
+
+        button4.addActionListener(new ActionListener() { // ActionListener para el nuevo botón
+            public void actionPerformed(ActionEvent e) {
+                String dna = JOptionPane.showInputDialog("Introduce una cadena de ADN (ejemplo: ATGCGTATGAGCTAGCATG)");
+                List<Integer> geneNumbers = listGeneNumbers(dna);
+                JOptionPane.showMessageDialog(null, "Lista de números de genes: " + geneNumbers);
             }
         });
 
@@ -97,5 +109,20 @@ public class Main {
             }
             return calculateCombinations(newGenes, generations - 1);
         }
+    }
+
+    public static List<Integer> listGeneNumbers(String dna) { // Nueva función
+        Map<Character, Integer> geneToNumber = new HashMap<>();
+        geneToNumber.put('A', 1);
+        geneToNumber.put('T', 2);
+        geneToNumber.put('G', 3);
+        geneToNumber.put('C', 4);
+
+        List<Integer> geneNumbers = new ArrayList<>();
+        for (char gene : dna.toCharArray()) {
+            geneNumbers.add(geneToNumber.get(gene));
+        }
+
+        return geneNumbers;
     }
 }
