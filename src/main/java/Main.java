@@ -14,21 +14,25 @@ public class Main {
 
         JLabel label = new JLabel("UAX", SwingConstants.CENTER);
         JPanel panelUAX = new JPanel();
-        panelUAX.setPreferredSize(new Dimension(300, 300)); // Aumenta el tamaño aquí
+        panelUAX.setPreferredSize(new Dimension(300, 300));
         panelUAX.setBackground(Color.BLUE);
         panelUAX.add(label);
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));
-        panel.setBackground(Color.GRAY);
-
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.PAGE_AXIS));
+        buttonPanel.setLayout(new GridBagLayout());
         buttonPanel.setBackground(Color.GRAY);
 
         JButton button1 = new JButton("Conteo de Genes");
         JButton button2 = new JButton("Cálculo de Combinaciones Genéticas");
         JButton button3 = new JButton("Salir");
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        buttonPanel.add(button1, gbc);
+        buttonPanel.add(button2, gbc);
+        buttonPanel.add(button3, gbc);
 
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -52,16 +56,22 @@ public class Main {
             }
         });
 
-        buttonPanel.add(button1);
-        buttonPanel.add(button2);
-        buttonPanel.add(button3);
+        frame.getContentPane().setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
 
-        panel.add(Box.createHorizontalGlue());
-        panel.add(buttonPanel);
+        c.gridx = 0;
+        c.gridy = 0;
+        c.weightx = 0.5;
+        c.weighty = 1.0;
+        c.fill = GridBagConstraints.BOTH;
+        frame.getContentPane().add(panelUAX, c);
 
-        frame.getContentPane().setLayout(new BorderLayout());
-        frame.getContentPane().add(panelUAX, BorderLayout.WEST); // Añade el panelUAX directamente al marco en la posición oeste
-        frame.getContentPane().add(panel, BorderLayout.CENTER);
+        c.gridx = 1;
+        c.gridy = 0;
+        c.weightx = 0.5;
+        c.weighty = 1.0;
+        c.fill = GridBagConstraints.BOTH;
+        frame.getContentPane().add(buttonPanel, c);
 
         frame.setVisible(true);
     }
