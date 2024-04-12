@@ -1,20 +1,49 @@
-package org.example;
-
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        String dna = "ATGCGTATGAGCTAGCATG";
-        System.out.println("Number of genes: " + countGenes(dna));
+        JFrame frame = new JFrame("Menu");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(300, 200);
 
-        int n = 5;
-        System.out.println("Sum of natural numbers up to " + n + ": " + calculateSum(n));
+        JButton button1 = new JButton("Conteo de Genes");
+        JButton button2 = new JButton("Cálculo de Combinaciones Genéticas");
+        JButton button3 = new JButton("Salir");
 
-        int start = 1;
-        int end = 10;
-        System.out.println("Numbers from " + start + " to " + end + ": " + listNumbers(start, end));
+        button1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String dna = "ATGCGTATGAGCTAGCATG";
+                JOptionPane.showMessageDialog(null, "Number of genes: " + countGenes(dna));
+            }
+        });
+
+        button2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int generations = 2;
+                List<String> initialGenes = Arrays.asList("A", "a");
+                List<String> combinations = calculateCombinations(initialGenes, generations);
+                JOptionPane.showMessageDialog(null, "Genetic combinations for " + generations + " generations: " + combinations);
+            }
+        });
+
+        button3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
+        frame.getContentPane().setLayout(new FlowLayout());
+        frame.getContentPane().add(button1);
+        frame.getContentPane().add(button2);
+        frame.getContentPane().add(button3);
+
+        frame.setVisible(true);
     }
 
     public static int countGenes(String dna) {
@@ -27,21 +56,16 @@ public class Main {
         }
     }
 
-    public static int calculateSum(int n) {
-        if (n <= 0) {
-            return 0;
+    public static List<String> calculateCombinations(List<String> genes, int generations) {
+        if (generations == 1) {
+            return genes;
         } else {
-            return n + calculateSum(n - 1);
-        }
-    }
-
-    public static List<Integer> listNumbers(int start, int end) {
-        if (start > end) {
-            return new ArrayList<>();
-        } else {
-            List<Integer> numbers = listNumbers(start, end - 1);
-            numbers.add(end);
-            return numbers;
+            List<String> newGenes = new ArrayList<String>();
+            for (String gene : genes) {
+                newGenes.add(gene + "A");
+                newGenes.add(gene + "a");
+            }
+            return calculateCombinations(newGenes, generations - 1);
         }
     }
 }
