@@ -14,7 +14,7 @@ public class Main {
 
         JLabel label = new JLabel("UAX", SwingConstants.CENTER);
         JPanel panelUAX = new JPanel();
-        panelUAX.setPreferredSize(new Dimension(200, 200));
+        panelUAX.setPreferredSize(new Dimension(300, 300)); // Aumenta el tamaño aquí
         panelUAX.setBackground(Color.BLUE);
         panelUAX.add(label);
 
@@ -56,11 +56,11 @@ public class Main {
         buttonPanel.add(button2);
         buttonPanel.add(button3);
 
-        panel.add(panelUAX);
         panel.add(Box.createHorizontalGlue());
         panel.add(buttonPanel);
 
         frame.getContentPane().setLayout(new BorderLayout());
+        frame.getContentPane().add(panelUAX, BorderLayout.WEST); // Añade el panelUAX directamente al marco en la posición oeste
         frame.getContentPane().add(panel, BorderLayout.CENTER);
 
         frame.setVisible(true);
