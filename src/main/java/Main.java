@@ -26,8 +26,9 @@ public class Main {
 
         JButton button1 = new JButton("Conteo de Genes");
         JButton button2 = new JButton("Cálculo de Combinaciones Genéticas");
-        JButton button4 = new JButton("Salir");
-        JButton button3 = new JButton("Listado de Números de Genes"); // Nuevo botón
+        JButton button3 = new JButton("Salir");
+        JButton button4 = new JButton("Listado de Números de Genes");
+        JButton button5 = new JButton("Cálculo de Potencias y Máximos"); // Nuevo botón
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER;
@@ -36,7 +37,8 @@ public class Main {
         buttonPanel.add(button1, gbc);
         buttonPanel.add(button2, gbc);
         buttonPanel.add(button3, gbc);
-        buttonPanel.add(button4, gbc); // Agregar el nuevo botón al panel
+        buttonPanel.add(button4, gbc);
+        buttonPanel.add(button5, gbc); // Agregar el nuevo botón al panel
 
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -60,11 +62,32 @@ public class Main {
             }
         });
 
-        button4.addActionListener(new ActionListener() { // ActionListener para el nuevo botón
+        button4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String dna = JOptionPane.showInputDialog("Introduce una cadena de ADN (ejemplo: ATGCGTATGAGCTAGCATG)");
                 List<Integer> geneNumbers = listGeneNumbers(dna);
                 JOptionPane.showMessageDialog(null, "Lista de números de genes: " + geneNumbers);
+            }
+        });
+
+        button5.addActionListener(new ActionListener() { // ActionListener para el nuevo botón
+            public void actionPerformed(ActionEvent e) {
+                String baseInput = JOptionPane.showInputDialog("Introduce la base para el cálculo de potencias");
+                String exponentInput = JOptionPane.showInputDialog("Introduce el exponente para el cálculo de potencias");
+                String numbersInput = JOptionPane.showInputDialog("Introduce un conjunto de números separados por comas para encontrar el máximo");
+
+                int base = Integer.parseInt(baseInput);
+                int exponent = Integer.parseInt(exponentInput);
+                String[] numbersStr = numbersInput.split(",");
+                List<Integer> numbers = new ArrayList<>();
+                for (String numberStr : numbersStr) {
+                    numbers.add(Integer.parseInt(numberStr.trim()));
+                }
+
+                int power = calculatePower(base, exponent);
+                int max = findMax(numbers);
+
+                JOptionPane.showMessageDialog(null, "Potencia: " + power + "\nMáximo: " + max);
             }
         });
 
@@ -111,7 +134,7 @@ public class Main {
         }
     }
 
-    public static List<Integer> listGeneNumbers(String dna) { // Nueva función
+    public static List<Integer> listGeneNumbers(String dna) {
         Map<Character, Integer> geneToNumber = new HashMap<>();
         geneToNumber.put('A', 1);
         geneToNumber.put('T', 2);
@@ -124,5 +147,22 @@ public class Main {
         }
 
         return geneNumbers;
+    }
+
+    public static int calculatePower(int base, int exponent) { // Nueva función
+        if (exponent == 0) {
+            return 1;
+        } else {
+            return base * calculatePower(base, exponent - 1);
+        }
+    }
+
+    public static int findMax(List<Integer> numbers) { // Nueva función
+        if (numbers.size() == 1) {
+            return numbers.get(0);
+        } else {
+            int maxRest = findMax(numbers.subList(1, numbers.size()));
+            return Math.max(numbers.get(0), maxRest);
+        }
     }
 }
