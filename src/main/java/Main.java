@@ -14,7 +14,7 @@ public class Main {
 
         JLabel label = new JLabel("UAX", SwingConstants.CENTER);
         JPanel panelUAX = new JPanel();
-        panelUAX.setPreferredSize(new Dimension(300, 300));
+        panelUAX.setPreferredSize(new Dimension(10000, 10000));
         panelUAX.setBackground(Color.BLUE);
         panelUAX.add(label);
 
