@@ -19,8 +19,12 @@ public class Main {
         panelUAX.add(label);
 
         JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));
         panel.setBackground(Color.GRAY);
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.PAGE_AXIS));
+        buttonPanel.setBackground(Color.GRAY);
 
         JButton button1 = new JButton("Conteo de Genes");
         JButton button2 = new JButton("Cálculo de Combinaciones Genéticas");
@@ -48,13 +52,16 @@ public class Main {
             }
         });
 
-        panel.add(button1);
-        panel.add(button2);
-        panel.add(button3);
+        buttonPanel.add(button1);
+        buttonPanel.add(button2);
+        buttonPanel.add(button3);
+
+        panel.add(panelUAX);
+        panel.add(Box.createHorizontalGlue());
+        panel.add(buttonPanel);
 
         frame.getContentPane().setLayout(new BorderLayout());
-        frame.getContentPane().add(panelUAX, BorderLayout.WEST);
-        frame.getContentPane().add(panel, BorderLayout.EAST);
+        frame.getContentPane().add(panel, BorderLayout.CENTER);
 
         frame.setVisible(true);
     }
