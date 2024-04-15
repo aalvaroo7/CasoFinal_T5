@@ -3,7 +3,7 @@ package Herramientas_de_Análisis_Numérico;
 import java.util.ArrayList;
 import java.util.List;
 
-public class operaciones_numeros implements ej1 {
+public class operaciones_numeros implements Clase_abstracta_numeros {
 
     public int sum(int n) {
         if (n <= 0) {
@@ -13,7 +13,6 @@ public class operaciones_numeros implements ej1 {
         }
     }
 
-
     public List<Integer> listNumbers(int start, int end) {
         if (start > end) {
             return new ArrayList<>();
@@ -21,6 +20,23 @@ public class operaciones_numeros implements ej1 {
             List<Integer> numbers = listNumbers(start, end - 1);
             numbers.add(end);
             return numbers;
+        }
+    }
+
+    public int power(int base, int exponent) { // Implementación de la función para calcular potencias
+        if (exponent == 0) {
+            return 1;
+        } else {
+            return base * power(base, exponent - 1);
+        }
+    }
+
+    public int max(List<Integer> numbers) { // Implementación de la función para encontrar el valor máximo
+        if (numbers.size() == 1) {
+            return numbers.get(0);
+        } else {
+            int otherMax = max(numbers.subList(1, numbers.size()));
+            return numbers.get(0) > otherMax ? numbers.get(0) : otherMax;
         }
     }
 }

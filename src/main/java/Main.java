@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -27,12 +28,54 @@ public class Main {
         buttonPanel.setLayout(new GridBagLayout());
         buttonPanel.setBackground(Color.GRAY);
 
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
         JButton button1 = new JButton("Conteo de Genes");
         JButton button3 = new JButton("Cálculo de Combinaciones Genéticas");
         JButton button4 = new JButton("Suma de Números"); // Nuevo botón
         JButton button2 = new JButton("Salir");
+        JButton button5 = new JButton("Listado de Números");
+        JButton button6 = new JButton("Cálculo de Potencias");
+        JButton button7 = new JButton("Encontrar Máximo");
 
-        GridBagConstraints gbc = new GridBagConstraints();
+        buttonPanel.add(button5, gbc);
+        buttonPanel.add(button6, gbc);
+        buttonPanel.add(button7, gbc);
+
+
+        button5.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String startInput = JOptionPane.showInputDialog("Introduce el número inicial del rango");
+                String endInput = JOptionPane.showInputDialog("Introduce el número final del rango");
+                int start = Integer.parseInt(startInput);
+                int end = Integer.parseInt(endInput);
+                List<Integer> numbers = numberOperations.listNumbers(start, end);
+                JOptionPane.showMessageDialog(null, "Los números en el rango dado son: " + numbers);
+            }
+        });
+
+        button6.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String baseInput = JOptionPane.showInputDialog("Introduce la base");
+                String exponentInput = JOptionPane.showInputDialog("Introduce el exponente");
+                int base = Integer.parseInt(baseInput);
+                int exponent = Integer.parseInt(exponentInput);
+                int result = numberOperations.power(base, exponent);
+                JOptionPane.showMessageDialog(null, "El resultado de " + base + " elevado a " + exponent + " es: " + result);
+            }
+        });
+
+        button7.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String numbersInput = JOptionPane.showInputDialog("Introduce una lista de números separados por comas (ejemplo: 1,2,3,4,5)");
+                List<Integer> numbers = Arrays.stream(numbersInput.split(",")).map(Integer::parseInt).collect(Collectors.toList());
+                int max = numberOperations.max(numbers);
+                JOptionPane.showMessageDialog(null, "El valor máximo en la lista es: " + max);
+            }
+        });
+
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
@@ -79,6 +122,8 @@ public class Main {
                 JOptionPane.showMessageDialog(null, "La suma de los números naturales hasta " + number + " es: " + sum);
             }
         });
+
+
 
         frame.getContentPane().setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
