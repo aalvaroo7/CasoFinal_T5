@@ -1,5 +1,6 @@
 import Analisis_genes_ej_7_y_8.contadorgenes;
 import Analisis_genes_ej_7_y_8.CombinacionesGenetica;
+import Herramientas_de_Análisis_Numérico.operaciones_numeros;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,6 +11,8 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        operaciones_numeros numberOperations = new operaciones_numeros();
+
         JFrame frame = new JFrame("Menu");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 200);
@@ -25,16 +28,18 @@ public class Main {
         buttonPanel.setBackground(Color.GRAY);
 
         JButton button1 = new JButton("Conteo de Genes");
-        JButton button2 = new JButton("Salir");
         JButton button3 = new JButton("Cálculo de Combinaciones Genéticas");
+        JButton button4 = new JButton("Suma de Números"); // Nuevo botón
+        JButton button2 = new JButton("Salir");
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         buttonPanel.add(button1, gbc);
-        buttonPanel.add(button2, gbc);
         buttonPanel.add(button3, gbc);
+        buttonPanel.add(button4, gbc); // Agregar el nuevo botón al panel
+        buttonPanel.add(button2, gbc); // Agregar el botón de "Salir" al final
 
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -63,6 +68,15 @@ public class Main {
                 List<String> combinations = geneticCombinations.calculateCombinations(generations);
 
                 JOptionPane.showMessageDialog(null, "Combinaciones genéticas para " + generations + " generaciones: " + combinations);
+            }
+        });
+
+        button4.addActionListener(new ActionListener() { // ActionListener para el nuevo botón
+            public void actionPerformed(ActionEvent e) {
+                String numberInput = JOptionPane.showInputDialog("Introduce un número natural");
+                int number = Integer.parseInt(numberInput);
+                int sum = numberOperations.sum(number);
+                JOptionPane.showMessageDialog(null, "La suma de los números naturales hasta " + number + " es: " + sum);
             }
         });
 
