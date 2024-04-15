@@ -1,9 +1,12 @@
-import Analisis_genes.contadorgenes;
+import Analisis_genes_ej_7_y_8.contadorgenes;
+import Analisis_genes_ej_7_y_8.CombinacionesGenetica;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,6 +26,7 @@ public class Main {
 
         JButton button1 = new JButton("Conteo de Genes");
         JButton button2 = new JButton("Salir");
+        JButton button3 = new JButton("Cálculo de Combinaciones Genéticas");
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER;
@@ -30,6 +34,7 @@ public class Main {
 
         buttonPanel.add(button1, gbc);
         buttonPanel.add(button2, gbc);
+        buttonPanel.add(button3, gbc);
 
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -43,6 +48,21 @@ public class Main {
         button2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
+            }
+        });
+
+        button3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String initialGenesInput = JOptionPane.showInputDialog("Introduce los genes iniciales (ejemplo: A, a)");
+                String generationsInput = JOptionPane.showInputDialog("Introduce el número de generaciones");
+
+                List<String> initialGenes = Arrays.asList(initialGenesInput.split(","));
+                int generations = Integer.parseInt(generationsInput);
+
+                CombinacionesGenetica geneticCombinations = new CombinacionesGenetica(initialGenes);
+                List<String> combinations = geneticCombinations.calculateCombinations(generations);
+
+                JOptionPane.showMessageDialog(null, "Combinaciones genéticas para " + generations + " generaciones: " + combinations);
             }
         });
 

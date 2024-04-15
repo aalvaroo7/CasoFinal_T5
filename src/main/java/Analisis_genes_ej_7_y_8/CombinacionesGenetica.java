@@ -1,6 +1,5 @@
-package Analisis_genes;
+package Analisis_genes_ej_7_y_8;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class CombinacionesGenetica {
