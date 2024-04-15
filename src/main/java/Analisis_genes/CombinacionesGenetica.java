@@ -1,4 +1,4 @@
-package Analisis_genes_ej_7_y_8;
+package Analisis_genes;
 import java.util.ArrayList;
 import java.util.List;
 

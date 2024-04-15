@@ -1,6 +1,10 @@
 package Herramientas_de_Análisis_Numérico;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class operaciones_numeros implements Clase_abstracta_numeros {
@@ -38,5 +42,11 @@ public class operaciones_numeros implements Clase_abstracta_numeros {
             int otherMax = max(numbers.subList(1, numbers.size()));
             return numbers.get(0) > otherMax ? numbers.get(0) : otherMax;
         }
+    }
+
+    public void sortLinesAlphabetically(String filePath) throws IOException {
+        List<String> lines = Files.readAllLines(Paths.get(filePath));
+        Collections.sort(lines);
+        Files.write(Paths.get(filePath), lines);
     }
 }

@@ -1,5 +1,5 @@
-import Analisis_genes_ej_7_y_8.contadorgenes;
-import Analisis_genes_ej_7_y_8.CombinacionesGenetica;
+import Analisis_genes.contadorgenes;
+import Analisis_genes.CombinacionesGenetica;
 import Herramientas_de_Análisis_Numérico.operaciones_numeros;
 
 import javax.swing.*;
