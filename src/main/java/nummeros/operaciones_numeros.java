@@ -1,4 +1,4 @@
-package Herramientas_de_Análisis_Numérico;
+package nummeros;
 
 import java.io.IOException;
 import java.nio.file.Files;

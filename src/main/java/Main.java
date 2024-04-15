@@ -1,6 +1,6 @@
 import Analisis_genes.contadorgenes;
 import Analisis_genes.CombinacionesGenetica;
-import Herramientas_de_Análisis_Numérico.operaciones_numeros;
+import nummeros.operaciones_numeros;
 
 import javax.swing.*;
 import java.awt.*;
