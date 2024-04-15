@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
@@ -39,11 +40,25 @@ public class Main {
         JButton button5 = new JButton("Listado de Números");
         JButton button6 = new JButton("Cálculo de Potencias");
         JButton button7 = new JButton("Encontrar Máximo");
+        JButton button8 = new JButton("Ordenar Documento"); // Nuevo botón
+
+        buttonPanel.add(button8, gbc); // Agregar el nuevo botón al panel
+
+        button8.addActionListener(new ActionListener() { // ActionListener para el nuevo botón
+            public void actionPerformed(ActionEvent e) {
+                String filePath = JOptionPane.showInputDialog("Introduce la ruta del archivo");
+                try {
+                    numberOperations.sortLinesAlphabetically(filePath);
+                    JOptionPane.showMessageDialog(null, "Las líneas del archivo han sido ordenadas alfabéticamente.");
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null, "Ocurrió un error al ordenar las líneas del archivo: " + ex.getMessage());
+                }
+            }
+        });
 
         buttonPanel.add(button5, gbc);
         buttonPanel.add(button6, gbc);
         buttonPanel.add(button7, gbc);
-
 
         button5.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
