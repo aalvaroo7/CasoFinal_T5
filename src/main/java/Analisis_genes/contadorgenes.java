@@ -1,9 +1,9 @@
 package Analisis_genes;
 
-public class GeneCounter {
+public class contadorgenes {
     private String dna;
 
-    public GeneCounter(String dna) {
+    public contadorgenes(String dna) {
         this.dna = dna;
     }
 

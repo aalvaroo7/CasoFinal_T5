@@ -1,4 +1,4 @@
-import Analisis_genes.GeneCounter;
+import Analisis_genes.contadorgenes;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,7 +34,7 @@ public class Main {
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String dna = JOptionPane.showInputDialog("Introduce una cadena de ADN (ejemplo: ATGCGTATGAGCTAGCATG)");
-                GeneCounter geneCounter = new GeneCounter(dna);
+                contadorgenes geneCounter = new contadorgenes(dna);
                 int numberOfGenes = geneCounter.countGenes();
                 JOptionPane.showMessageDialog(null, "Number of genes: " + numberOfGenes);
             }
