@@ -1,5 +1,5 @@
 // En el archivo Main.java
-
+import sort.QuickSort;
 import Analisis_genes.AnalisisGenomico;
 import Gestión_de_Información_Científica.GestionInformacionCientifica;
 import nummeros.HerramientasAnalisisNumerico;
@@ -34,6 +34,8 @@ public class Main {
         button2.setAlignmentX(Component.CENTER_ALIGNMENT);
         JButton button3 = new JButton("Gestión de Información Científica");
         button3.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JButton button4 = new JButton("Salir");
+        button4.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         buttonPanel.add(Box.createRigidArea(new Dimension(0, 50)));
         buttonPanel.add(button1);
@@ -41,6 +43,8 @@ public class Main {
         buttonPanel.add(button2);
         buttonPanel.add(Box.createRigidArea(new Dimension(0, 30)));
         buttonPanel.add(button3);
+        buttonPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+        buttonPanel.add(button4);
 
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -60,6 +64,12 @@ public class Main {
             }
         });
 
+        button4.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
         mainPanel.add(Box.createRigidArea(new Dimension(0, 100)));
         mainPanel.add(titleLabel);
         mainPanel.add(Box.createRigidArea(new Dimension(0, 50)));
@@ -67,5 +77,19 @@ public class Main {
 
         frame.getContentPane().add(mainPanel);
         frame.setVisible(true);
+
+        // Crear un array de Integer para ordenar
+        Integer[] array = {5, 3, 7, 1, 2, 8, 6, 4};
+
+        // Crear una instancia de QuickSort
+        QuickSort quickSort = new QuickSort();
+
+        // Ordenar el array usando QuickSort
+        Integer[] sortedArray = quickSort.sort(array);
+
+        // Imprimir el array ordenado
+        for (Integer num : sortedArray) {
+            System.out.print(num + " ");
+        }
     }
 }

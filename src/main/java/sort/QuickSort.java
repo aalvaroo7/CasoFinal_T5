@@ -4,7 +4,7 @@ package sort;
  * @author Varun Upadhyay (https://github.com/varunu28)
  * @author Podshivalov Nikita (https://github.com/nikitap492)
  */
-class QuickSort {
+ public class QuickSort {
 
     /**
      * This method implements the Generic Quick Sort
