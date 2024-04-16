@@ -1,12 +1,20 @@
 // En el archivo HerramientasAnalisisNumerico.java
 package  nummeros;
+// En el archivo HerramientasAnalisisNumerico.java
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class HerramientasAnalisisNumerico extends JFrame {
+    private operaciones_numeros operacionesNumeros;
+
     public HerramientasAnalisisNumerico() {
+        operacionesNumeros = new operaciones_numeros();
+
         setTitle("Herramientas de Análisis Numérico");
         setSize(500, 200);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -24,7 +32,17 @@ public class HerramientasAnalisisNumerico extends JFrame {
         buttonPanel.add(button1, gbc);
         buttonPanel.add(button2, gbc);
 
-        // Aquí puedes agregar los ActionListener para los botones
+        button1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Sumatoria: " + operacionesNumeros.sum(10) + "\nListado de números: " + operacionesNumeros.listNumbers(1, 10).toString());
+            }
+        });
+
+        button2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Potencia: " + operacionesNumeros.power(2, 3) + "\nMáximo: " + operacionesNumeros.max(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5))));
+            }
+        });
 
         getContentPane().add(buttonPanel);
         setVisible(true);
