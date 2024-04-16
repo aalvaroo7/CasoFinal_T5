@@ -1,5 +1,9 @@
 // En el archivo Main.java
 
+import Analisis_genes.AnalisisGenomico;
+import nummeros.GestionInformacionCientifica;
+import nummeros.HerramientasAnalisisNumerico;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
