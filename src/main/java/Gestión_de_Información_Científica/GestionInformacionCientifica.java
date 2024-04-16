@@ -15,20 +15,6 @@ import java.util.Date;
 public class GestionInformacionCientifica extends JFrame {
     private operaciones_numeros operacionesNumeros;
 
-
-    public String[] sortDates(String[] dateStrings) throws ParseException {
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        Date[] dates = new Date[dateStrings.length];
-        for (int i = 0; i < dateStrings.length; i++) {
-            dates[i] = format.parse(dateStrings[i]);
-        }
-        Arrays.sort(dates);
-        for (int i = 0; i < dates.length; i++) {
-            dateStrings[i] = format.format(dates[i]);
-        }
-        return dateStrings;
-    }
-
     public GestionInformacionCientifica() {
         operacionesNumeros = new operaciones_numeros();
 
@@ -102,4 +88,16 @@ public class GestionInformacionCientifica extends JFrame {
         setVisible(true);
     }
 
+    public String[] sortDates(String[] dateStrings) throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        Date[] dates = new Date[dateStrings.length];
+        for (int i = 0; i < dateStrings.length; i++) {
+            dates[i] = format.parse(dateStrings[i]);
+        }
+        Arrays.sort(dates);
+        for (int i = 0; i < dates.length; i++) {
+            dateStrings[i] = format.format(dates[i]);
+        }
+        return dateStrings;
+    }
 }
