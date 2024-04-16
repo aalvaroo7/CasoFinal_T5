@@ -1,7 +1,7 @@
 // En el archivo Main.java
 
 import Analisis_genes.AnalisisGenomico;
-import nummeros.GestionInformacionCientifica;
+import Gestión_de_Información_Científica.GestionInformacionCientifica;
 import nummeros.HerramientasAnalisisNumerico;
 
 import javax.swing.*;
