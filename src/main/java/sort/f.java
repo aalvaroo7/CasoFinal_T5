@@ -1,20 +1,16 @@
-package com.thealgorithms.sorts;
-
-import static com.thealgorithms.sorts.SortUtils.*;
+package sort;
 
 /**
  * @author Varun Upadhyay (https://github.com/varunu28)
  * @author Podshivalov Nikita (https://github.com/nikitap492)
- * @see SortAlgorithm
  */
-class QuickSort implements SortAlgorithm {
+class QuickSort {
 
     /**
      * This method implements the Generic Quick Sort
      *
      * @param array The array to be sorted Sorts the array in increasing order
      */
-    @Override
     public <T extends Comparable<T>> T[] sort(T[] array) {
         doSort(array, 0, array.length - 1);
         return array;
@@ -27,7 +23,7 @@ class QuickSort implements SortAlgorithm {
      * @param right The last index of an array
      * @param array The array to be sorted
      */
-    private static <T extends Comparable<T>> void doSort(T[] array, int left, int right) {
+    private <T extends Comparable<T>> void doSort(T[] array, int left, int right) {
         if (left < right) {
             int pivot = randomPartition(array, left, right);
             doSort(array, left, pivot - 1);
@@ -43,7 +39,7 @@ class QuickSort implements SortAlgorithm {
      * @param right The last index of an array
      * @return the partition index of the array
      */
-    private static <T extends Comparable<T>> int randomPartition(T[] array, int left, int right) {
+    private <T extends Comparable<T>> int randomPartition(T[] array, int left, int right) {
         int randomIndex = left + (int) (Math.random() * (right - left + 1));
         swap(array, randomIndex, right);
         return partition(array, left, right);
@@ -57,7 +53,7 @@ class QuickSort implements SortAlgorithm {
      * @param right The last index of an array Finds the partition index of an
      * array
      */
-    private static <T extends Comparable<T>> int partition(T[] array, int left, int right) {
+    private <T extends Comparable<T>> int partition(T[] array, int left, int right) {
         int mid = (left + right) >>> 1;
         T pivot = array[mid];
 
@@ -75,5 +71,15 @@ class QuickSort implements SortAlgorithm {
             }
         }
         return left;
+    }
+
+    private <T extends Comparable<T>> boolean less(T v, T w) {
+        return v.compareTo(w) < 0;
+    }
+
+    private <T> void swap(T[] array, int i, int j) {
+        T temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
     }
 }
