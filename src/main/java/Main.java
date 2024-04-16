@@ -41,7 +41,10 @@ public class Main {
         JButton button6 = new JButton("Cálculo de Potencias");
         JButton button7 = new JButton("Encontrar Máximo");
         JButton button8 = new JButton("Ordenar Documento"); // Nuevo botón
-
+        JButton button9 = new JButton("Búsqueda Lineal en Documento");
+        JButton button10 = new JButton("Búsqueda Binaria en Documento");
+        buttonPanel.add(button9, gbc);
+        buttonPanel.add(button10, gbc);
         buttonPanel.add(button8, gbc); // Agregar el nuevo botón al panel
 
         button8.addActionListener(new ActionListener() { // ActionListener para el nuevo botón
@@ -55,11 +58,33 @@ public class Main {
                 }
             }
         });
-
+        button9.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String filePath = JOptionPane.showInputDialog("Introduce la ruta del archivo");
+                String word = JOptionPane.showInputDialog("Introduce la palabra a buscar");
+                try {
+                    boolean found = numberOperations.linearSearch(filePath, word);
+                    JOptionPane.showMessageDialog(null, found ? "La palabra fue encontrada." : "La palabra no fue encontrada.");
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null, "Ocurrió un error al buscar la palabra en el archivo: " + ex.getMessage());
+                }
+            }
+        });
         buttonPanel.add(button5, gbc);
         buttonPanel.add(button6, gbc);
         buttonPanel.add(button7, gbc);
-
+        button10.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String filePath = JOptionPane.showInputDialog("Introduce la ruta del archivo");
+                String word = JOptionPane.showInputDialog("Introduce la palabra a buscar");
+                try {
+                    boolean found = numberOperations.binarySearch(filePath, word);
+                    JOptionPane.showMessageDialog(null, found ? "La palabra fue encontrada." : "La palabra no fue encontrada.");
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null, "Ocurrió un error al buscar la palabra en el archivo: " + ex.getMessage());
+                }
+            }
+        });
         button5.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String startInput = JOptionPane.showInputDialog("Introduce el número inicial del rango");

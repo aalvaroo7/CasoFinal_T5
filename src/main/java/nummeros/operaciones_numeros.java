@@ -49,4 +49,35 @@ public class operaciones_numeros implements Clase_abstracta_numeros {
         Collections.sort(lines);
         Files.write(Paths.get(filePath), lines);
     }
+
+    public boolean linearSearch(String filePath, String word) throws IOException {
+        List<String> lines = Files.readAllLines(Paths.get(filePath));
+        for (String line : lines) {
+            if (line.contains(word)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean binarySearch(String filePath, String word) throws IOException {
+        List<String> lines = Files.readAllLines(Paths.get(filePath));
+        Collections.sort(lines);
+        int left = 0;
+        int right = lines.size() - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (lines.get(mid).equals(word)) {
+                return true;
+            } else if (lines.get(mid).compareTo(word) < 0) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return false;
+    }
+
+
+
 }
